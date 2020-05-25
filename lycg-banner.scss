@@ -1,0 +1,399 @@
+//
+// LCG Banner
+//
+// Base - core setup and typography
+// Image - image background
+// Form - inputs
+// Slider - interactive slider
+// Themes - visual appearance options
+// Yacht - exclusive to yacht detail pages
+// Custom - overrides
+
+$color-navy: #1a1c33;
+$color-black: #000;
+$color-text-secondary: #555;
+$color-text-light: #747474;
+$color-white: #fff;
+$font-weight-medium: 500;
+$letter-spacing-expanded: 0.05rem;
+
+// Vertical padding scale
+// Use mixin to define vertical spacing based off the initial base padding value.
+// 1. Always round down to the nearest whole number using the (floor) function.
+// 2. Add rem suffix to output.
+
+$padding-base: 1; // 1rem
+
+@mixin vertical-padding($pt, $pb) {
+	padding-top: floor($padding-base * $pt) + rem;
+	padding-bottom: floor($padding-base * $pb) + rem;
+}
+
+@mixin top-padding($padd) {
+	padding-top: floor($padding-base * $padd) + rem;
+}
+
+@mixin bottom-padding($padd) {
+	padding-bottom: floor($padding-base * $padd) + rem;
+}
+
+
+
+// Base
+// -----------------------------------------------------------------------------
+
+.lcg-banner {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		position: relative;
+		width: 100%;
+		height: 100%;
+		max-width: 76rem;
+		margin: auto;
+		@include vertical-padding(6, 6); // 6rem, 6rem
+		padding-left: 0.9375rem;
+		padding-right: 0.9375rem;
+		color: $color-white;
+		text-align: center;
+		z-index: 1;
+
+		& > :last-child {
+			margin-bottom: 0;
+		}
+
+		.button {
+			align-self: center;
+		}
+
+		@media (min-width: 980px) {
+			@include vertical-padding(8, 8); // 8rem
+		}
+
+		@media (min-width: 1200px) {
+			@include vertical-padding(10, 10); // 10rem
+		}
+	}
+
+	&__heading {
+		margin: 0;
+		padding-left: 5%;
+		padding-right: 5%;
+		color: $color-white;
+		font-size: 1.75rem;
+		line-height: 1.25;
+		text-transform: uppercase;
+
+		@media (min-width: 980px) {
+			font-size: 2.25rem;
+		}
+
+		@media (min-width: 1200px) {
+			font-size: 2.75rem;
+		}
+	}
+
+	&__subtitle {
+		margin-top: 0;
+		color: $color-white;
+		font-size: 1.125rem;
+		font-weight: $font-weight-medium;
+		line-height: 1.25;
+
+		@media (min-width: 980px) {
+			font-size: 1.25rem;
+		}
+	}
+
+	&__description {
+		margin-top: 0;
+	}
+
+	&__meta {
+		margin-bottom: 1rem;
+		color: rgba($color-white, 0.8);
+		font-weight: $font-weight-medium;
+		letter-spacing: $letter-spacing-expanded;
+		text-transform: uppercase;
+
+		> span {
+			position: relative;
+			display: inline-block;
+			margin: 0 2rem;
+
+			&::after {
+				display: inline-block;
+				position: absolute;
+				top: 50%;
+				right: -1.3rem;
+				width: 5px;
+				height: 5px;
+				background: rgba($color-white, 0.6);
+				border-radius: 50%;
+				transform: translateY(-50%);
+				content: "";
+			}
+		}
+
+		a {
+			display: inline-block;
+			color: $color-white;
+			box-decoration-break: clone;
+			box-shadow: 0px 1px 0px rgba($color-white, 0.6);
+			cursor: pointer;
+
+			&:hover {
+				box-shadow: 0px 1px 0px $color-white;
+			}
+		}
+	}
+
+	// Modifiers
+
+	&.lcg-banner--compact {
+		> .lcg-banner__content {
+			@include vertical-padding(2, 1); // 2rem, 1rem
+	
+			@media (min-width: 980px) {
+				@include vertical-padding(3, 2); // 3rem, 2rem
+			}
+		}
+	}
+
+	// Custom
+
+	.regions {
+		margin-top: 2rem;
+	}
+}
+
+
+
+// Image
+// -----------------------------------------------------------------------------
+
+.lcg-banner-image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+
+	&::before {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		content: "";
+		background-color: $color-black;
+		opacity: 0.2;
+		z-index: 1;
+	}
+}
+
+
+
+// Form
+// -----------------------------------------------------------------------------
+
+.lcg-banner__form {
+	position: relative;
+	width: 100%;
+	padding: 20px 0 0;
+	background-color: rgba($color-navy, 0.7);
+	z-index: 2;
+
+	.lcg-banner__content {
+		display: block;
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+
+	.column {
+		padding: 0;
+	}
+
+	.input,
+	.input-list,
+	.button {
+		height: 44px;
+	}
+
+	.button {
+		width: 100%;
+		border-radius: 0;
+	}
+
+	@media (min-width: 40.0625em) {
+		.input,
+		.input-list {
+			border-right: 0;
+		}
+	}
+}
+
+
+
+// Slider
+// -----------------------------------------------------------------------------
+
+.lcg-slider-container {
+	width: 100%;
+}
+
+.slick-list {
+	height: 100%;
+}
+
+.slick-track {
+	height: 100%;
+}
+
+.slick-slide {
+	position: relative;
+}
+
+
+
+// Themes
+// -----------------------------------------------------------------------------
+
+.lcg-banner--theme-grey {
+	background-color: #f3f3f3;
+
+	.lcg-banner__heading,
+	.lcg-banner__subtitle {
+		color: $color-text-secondary;
+	}
+
+	.lcg-banner__description {
+		color: $color-text-light;
+	}
+
+	.lcg-banner__form {
+		padding: 0;
+		background-color: transparent;
+	}
+}
+
+
+
+// Homepage
+// -----------------------------------------------------------------------------
+
+.lcg-banner-home {
+
+	.lcg-slider-container {
+
+		@media (min-width: 980px) {
+			.lcg-banner__content {
+				@include bottom-padding(12); // 12rem
+			}
+		}
+	}
+
+	.lcg-banner__form {
+
+		@media (min-width: 980px) {
+			position: absolute;
+			bottom: 0;
+		}
+	}
+}
+
+
+
+// Yacht
+// -----------------------------------------------------------------------------
+
+.lcg-banner-yacht {
+
+	@media (max-width: 979px) {
+		.lcg-slider-container {
+			position: relative;
+		}
+	}
+
+	@media (min-width: 980px) {
+		.lcg-slider-container {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+		}
+	}
+
+	.lcg-banner-image {
+		position: relative;
+
+		img {
+			width: 100%;
+
+			@media (min-width: 980px) {
+				display: none;
+			}
+		}
+
+		@media (min-width: 980px) {
+			position: absolute;
+		}
+	}
+
+	.lcg-banner__content {
+		@include vertical-padding(18, 4); // 18rem, 4rem
+		text-align: left;
+
+		@media (min-width: 1200px) {
+			@include top-padding(25); // 25rem
+		}
+
+		@media (max-width: 979px) {
+			order: 1;
+			@include top-padding(1); // 1rem
+			padding-bottom: 0;
+			color: $color-text-secondary;
+		}
+	}
+
+	.lcg-banner__heading {
+		margin: 0;
+		padding: 0;
+
+		@media (max-width: 979px) {
+			color: $color-text-secondary;
+		}
+	}
+
+	.nav-tabs {
+		margin: 0;
+	}
+}
+
+.nav-tabs-mobile,
+.nav-tabs-yacht {
+	margin: 0;
+	z-index: 2;
+}
+
+
+
+// Custom
+// -----------------------------------------------------------------------------
+
+// Blog post
+
+.lcg-banner-post {
+	.lcg-banner__heading {
+		text-transform: none;
+	}
+}
