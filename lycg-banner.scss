@@ -17,8 +17,8 @@ $color-white: #fff;
 $font-weight-medium: 500;
 $letter-spacing-expanded: 0.05rem;
 
-// Vertical padding scale
-// Use mixin to define vertical spacing based off the initial base padding value.
+// Padding Scale
+// Use mixin to define padding space based off the initial base padding value.
 // 1. Always round down to the nearest whole number using the (floor) function.
 // 2. Add rem suffix to output.
 
